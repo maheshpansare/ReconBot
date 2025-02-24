@@ -1,3 +1,8 @@
+body{
+    background: url(../images/banner.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 #info{
     padding-top: 60px !important;
     padding-bottom: 0px;
@@ -15,4 +20,19 @@
 #cVESearch{
     padding-top: 60px !important;
     padding-bottom: 0px;
+}
+
+.btn-outline-danger {
+    background-color: #6c757d;  /* Grey shade */
+    border-color: #6c757d;
+    color: #ffffff;
+}
+
+.btn-outline-danger:hover, .btn-outline-danger:focus,.btn-danger {
+    background-color: #6c757d;  /* Grey shade */
+    border-color: #6c757d;
+    color: #ffffff;
+}
+.fw-bold{
+    color: #fff!important;
 }
