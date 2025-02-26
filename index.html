@@ -22,7 +22,7 @@
         }
         .menu {
             width: 20%;
-            background-color: #f8f9fa;
+            background-color: #343a40; /* Dark background */
             padding: 20px;
         }
         .content {
@@ -32,11 +32,11 @@
         .menu a {
             display: block;
             padding: 10px;
-            color: #000;
+            color: #fff; /* White text */
             text-decoration: none;
         }
         .menu a:hover {
-            background-color: #ddd;
+            background-color: #495057; /* Darker background on hover */
         }
     </style>
 </head>
@@ -60,15 +60,35 @@
 
     <div class="container-fluid">
         <div class="menu">
-            <a href="#all-vulnerabilities">All Vulnerabilities</a>
-            <a href="#information-disclosure">Information Disclosure</a>
-            <a href="#technology-detector">Technology Detector</a>
-            <a href="#subdomain-finding">Subdomain Finding</a>
-            <a href="#port-scanning">Port Scanning</a>
-            <a href="#urls-collecting">URLs Collecting</a>
-            <a href="#github-dorking">GitHub Normal Dorking</a>
-            <a href="#cms-dorking">CMS Dorking</a>
-            <a href="#cve-search">CVE Search</a>
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="#all-vulnerabilities">All Vulnerabilities</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#information-disclosure">Information Disclosure</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#technology-detector">Technology Detector</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#subdomain-finding">Subdomain Finding</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#port-scanning">Port Scanning</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#urls-collecting">URLs Collecting</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#github-dorking">GitHub Normal Dorking</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#cms-dorking">CMS Dorking</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#cve-search">CVE Search</a>
+                </li>
+            </ul>
         </div>
         <div class="content">
             <!-- Sections -->
