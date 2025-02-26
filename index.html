@@ -92,6 +92,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#cve-search">CVE Search</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="openJiraIntegration()">Vulnerability Logging</a>
+                </li>
             </ul>
         </div>
         <div class="content">
@@ -380,6 +383,13 @@
             </div>
         </div>
 
+        <div id="vulnerability-logging" class="mb-5">
+            <h4 class="fw-bold text-center mb-3">Vulnerability Logging</h4>
+            <div class="d-flex flex-wrap justify-content-center">
+                <button onclick="openJiraIntegration()" type="button" class="btn btn-outline-danger m-1">Jira Integration</button>
+            </div>
+        </div>
+
         <h4 class="fw-bold text-center mb-3">Interactive Terminal</h4>
         <!-- Terminal container -->
         <div id="terminal"></div>
@@ -470,7 +480,115 @@
                 }
             });
         });
+
+        function openJiraIntegration() {
+            var jiraModal = new bootstrap.Modal(document.getElementById('jiraIntegrationModal'));
+            jiraModal.show();
+        }
      </script>
+
+    <!-- Popup Modal -->
+    <div class="modal fade" id="jiraIntegrationModal" tabindex="-1" aria-labelledby="jiraIntegrationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="jiraIntegrationModalLabel">Vulnerability Logging</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="vulnerability-form">
+                        <div class="mb-3">
+                            <label for="vulnerability-id" class="form-label">Vulnerability ID</label>
+                            <input type="text" class="form-control" id="vulnerability-id" value="VULN-001" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="vulnerability-type" class="form-label">Vulnerability Type</label>
+                            <select class="form-select" id="vulnerability-type" required>
+                                <option value="Injection">Injection</option>
+                                <option value="Broken Authentication">Broken Authentication</option>
+                                <option value="Sensitive Data Exposure">Sensitive Data Exposure</option>
+                                <option value="XML External Entities (XXE)">XML External Entities (XXE)</option>
+                                <option value="Broken Access Control">Broken Access Control</option>
+                                <option value="Security Misconfiguration">Security Misconfiguration</option>
+                                <option value="Cross-Site Scripting (XSS)">Cross-Site Scripting (XSS)</option>
+                                <option value="Insecure Deserialization">Insecure Deserialization</option>
+                                <option value="Using Components with Known Vulnerabilities">Using Components with Known Vulnerabilities</option>
+                                <option value="Insufficient Logging & Monitoring">Insufficient Logging & Monitoring</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="severity" class="form-label">Severity</label>
+                            <select class="form-select" id="severity" required>
+                                <option value="Critical">Critical</option>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                                <option value="Informational">Informational</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cvss-score" class="form-label">CVSS Score</label>
+                            <input type="number" step="0.1" class="form-control" id="cvss-score" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="impact" class="form-label">Impact</label>
+                            <textarea class="form-control" id="impact" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="remediation" class="form-label">Remediation</label>
+                            <textarea class="form-control" id="remediation" rows="3" required></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openJiraIntegration() {
+            var jiraModal = new bootstrap.Modal(document.getElementById('jiraIntegrationModal'));
+            jiraModal.show();
+        }
+
+        document.getElementById('vulnerability-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const vulnerabilityData = {
+                id: document.getElementById('vulnerability-id').value,
+                title: document.getElementById('title').value,
+                type: document.getElementById('vulnerability-type').value,
+                severity: document.getElementById('severity').value,
+                cvss_score: parseFloat(document.getElementById('cvss-score').value),
+                description: document.getElementById('description').value,
+                impact: document.getElementById('impact').value,
+                remediation: document.getElementById('remediation').value
+            };
+
+            // Call the backend API to submit vulnerability to Jira (make sure your backend is running)
+            fetch('http://localhost:5000/submit_vulnerability', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(vulnerabilityData),
+            })
+            .then(response => response.json())
+            .then(data => alert(data.message))
+            .catch(error => alert('Error: ' + error));
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="./assets/script.js"></script>
