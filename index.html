@@ -437,6 +437,39 @@
                      term.write(e);
              }
          });
+
+         const menuItems = {
+            "all-vulnerabilities": [
+                { text: "SQLi Parameters (51)", onclick: "allDork('site:example.com  inurl:cat= | inurl:search= | inurl:action= | inurl:module= | inurl:rep= | inurl:review= | inurl:rep= | inurl:rep= | inurl:rep= | inurl:rep= | inurl:rep= | inurl:total= | inurl:selectID= | inurl:page= | inurl:search= | inurl:recherche= | inurl:term= | inurl:misc= | inurl:idProduct= | inurl:num= | inurl:idCategory= | inurl:no= | inurl:table= | inurl:bbs= | inurl:bookPageNo= | inurl:proj_nr= | inurl:card= | inurl:category= | inurl:LAN= | inurl:cid= | inurl:class= | inurl:column= | inurl:p= | inurl:mode= | inurl:date= | inurl:cPath= | inurl:delete= | inurl:dir= | inurl:chnum= | inurl:code= | inurl:email= | inurl:T****= | inurl:fetch= | inurl:file= | inurl:field= | inurl:first name= | inurl:form= | inurl:from= | inurl:filter= | inurl:pr= | inurl:gubun=')" },
+                { text: "SQLi Parameters (68)", onclick: "allDork('site:example.com  inurl:doc= | inurl:code= | inurl:data= | inurl:id= | inurl:view= | inurl:i= | inurl:modus= | inurl:section= | inurl:site= | inurl:url= | inurl:w= | inurl:item= | inurl:join= | inurl:board= | inurl:keyword= | inurl:lang= | inurl:last name= | inurl:login= | inurl:ps_db= | inurl:main= | inurl:menu= | inurl:typeboard= | inurl:name= | inurl:nav= | inurl:t= | inurl:news= | inurl:number= | inurl:show= | inurl:order= | inurl:orm= | inurl:ref= | inurl:modul= | inurl:params= | inurl:pass= | inurl:password= | inurl:PageID= | inurl:pid= | inurl:process= | inurl:shop= | inurl:q= | inurl:query= | inurl:region= | inurl:register= | inurl:report= | inurl:reset password= | inurl:reset= | inurl:results= | inurl:role= | inurl:row= | inurl:search= | inurl:sel= | inurl:select= | inurl:sleep= | inurl:sort= | inurl:string= | inurl:table= | inurl:thread= | inurl:time= | inurl:title= | inurl:topic= | inurl:type= | inurl:update= | inurl:url= | inurl:user= | inurl:username= | inurl:users= | inurl:view= | inurl:where=')" },
+                // ...other buttons...
+            ],
+            "information-disclosure": [
+                { text: "Directory listing vulnerabilities", onclick: "genericDork('site:example.com intitle:index.of')" },
+                { text: "exposed FTP", onclick: "genericDork('site:example.com intitle:index of inurl:ftp')" },
+                // ...other buttons...
+            ],
+            // ...other menu items...
+        };
+
+        document.querySelectorAll('.menu a').forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const contentDiv = document.querySelector('.content');
+                contentDiv.innerHTML = '';
+
+                if (menuItems[targetId]) {
+                    menuItems[targetId].forEach(button => {
+                        const btn = document.createElement('button');
+                        btn.className = 'btn btn-outline-danger m-1';
+                        btn.textContent = button.text;
+                        btn.setAttribute('onclick', button.onclick);
+                        contentDiv.appendChild(btn);
+                    });
+                }
+            });
+        });
      </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
