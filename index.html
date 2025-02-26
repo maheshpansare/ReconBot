@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +16,27 @@
             width: 100%;
             height: 500px;
             border: 1px solid #ddd;
+        }
+        .container-fluid {
+            display: flex;
+        }
+        .menu {
+            width: 20%;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .content {
+            width: 80%;
+            padding: 20px;
+        }
+        .menu a {
+            display: block;
+            padding: 10px;
+            color: #000;
+            text-decoration: none;
+        }
+        .menu a:hover {
+            background-color: #ddd;
         }
     </style>
 </head>
@@ -38,14 +58,23 @@
         </form>
     </div>
 
-    <!-- Sections -->
-    <div class="container">
-        <!-- All Vulnerability -->
-         
-        <div class="mb-5">
-            <h4 class="fw-bold text-center mb-3">All Vulnerabilities</h4>
-            <div class="d-flex flex-wrap justify-content-center">
-               
+    <div class="container-fluid">
+        <div class="menu">
+            <a href="#all-vulnerabilities">All Vulnerabilities</a>
+            <a href="#information-disclosure">Information Disclosure</a>
+            <a href="#technology-detector">Technology Detector</a>
+            <a href="#subdomain-finding">Subdomain Finding</a>
+            <a href="#port-scanning">Port Scanning</a>
+            <a href="#urls-collecting">URLs Collecting</a>
+            <a href="#github-dorking">GitHub Normal Dorking</a>
+            <a href="#cms-dorking">CMS Dorking</a>
+            <a href="#cve-search">CVE Search</a>
+        </div>
+        <div class="content">
+            <!-- Sections -->
+            <div id="all-vulnerabilities" class="mb-5">
+                <h4 class="fw-bold text-center mb-3">All Vulnerabilities</h4>
+                <div class="d-flex flex-wrap justify-content-center">
                     <button onclick="allDork('site:example.com  inurl:cat= | inurl:search= | inurl:action= | inurl:module= | inurl:rep= | inurl:review= | inurl:rep= | inurl:rep= | inurl:rep= | inurl:rep= | inurl:rep= | inurl:total= | inurl:selectID= | inurl:page= | inurl:search= | inurl:recherche= | inurl:term= | inurl:misc= | inurl:idProduct= | inurl:num= | inurl:idCategory= | inurl:no= | inurl:table= | inurl:bbs= | inurl:bookPageNo= | inurl:proj_nr= | inurl:card= | inurl:category= | inurl:LAN= | inurl:cid= | inurl:class= | inurl:column= | inurl:p= | inurl:mode= | inurl:date= | inurl:cPath= | inurl:delete= | inurl:dir= | inurl:chnum= | inurl:code= | inurl:email= | inurl:T****= | inurl:fetch= | inurl:file= | inurl:field= | inurl:first name= | inurl:form= | inurl:from= | inurl:filter= | inurl:pr= | inurl:gubun=')" type="button" class="btn btn-outline-danger m-1">SQLi Parameters (51)</button>
     
                     <button onclick="allDork('site:example.com  inurl:doc= | inurl:code= | inurl:data= | inurl:id= | inurl:view= | inurl:i= | inurl:modus= | inurl:section= | inurl:site= | inurl:url= | inurl:w= | inurl:item= | inurl:join= | inurl:board= | inurl:keyword= | inurl:lang= | inurl:last name= | inurl:login= | inurl:ps_db= | inurl:main= | inurl:menu= | inurl:typeboard= | inurl:name= | inurl:nav= | inurl:t= | inurl:news= | inurl:number= | inurl:show= | inurl:order= | inurl:orm= | inurl:ref= | inurl:modul= | inurl:params= | inurl:pass= | inurl:password= | inurl:PageID= | inurl:pid= | inurl:process= | inurl:shop= | inurl:q= | inurl:query= | inurl:region= | inurl:register= | inurl:report= | inurl:reset password= | inurl:reset= | inurl:results= | inurl:role= | inurl:row= | inurl:search= | inurl:sel= | inurl:select= | inurl:sleep= | inurl:sort= | inurl:string= | inurl:table= | inurl:thread= | inurl:time= | inurl:title= | inurl:topic= | inurl:type= | inurl:update= | inurl:url= | inurl:user= | inurl:username= | inurl:users= | inurl:view= | inurl:where=')" type="button" class="btn btn-outline-danger m-1">SQLi Parameters (68)</button>
@@ -78,7 +107,7 @@
         </div>
 
         <!-- Information Disclosure -->
-        <div class="mb-5">
+        <div id="information-disclosure" class="mb-5">
             <h4 class="fw-bold text-center mb-3">Information Disclosure</h4>
             <div class="d-flex flex-wrap justify-content-center">
            
@@ -166,7 +195,7 @@
               
             </div>
         </div>
-        <div class="mb-5">
+        <div id="technology-detector" class="mb-5">
             <h4 class="fw-bold text-center mb-3">Technology Detector</h4>
             <div class="d-flex flex-wrap justify-content-center">
 
@@ -181,7 +210,7 @@
         </div>
 
         <!-- Subdomain Finding -->
-        <div class="mb-5">
+        <div id="subdomain-finding" class="mb-5">
             <h4 class="fw-bold text-center mb-3">Subdomain Finding</h4>
             <div class="d-flex flex-wrap justify-content-center"> 
                     <button onclick="subdomainDork('https://crt.sh/?q=%25.example.com')" type="button" class="btn btn-outline-danger m-1">crt.sh</button>
@@ -210,14 +239,14 @@
 
         <!-- Port Scanning & URLs Collecting -->
         <div class="row mb-5">
-            <div class="col-md-6">
+            <div id="port-scanning" class="col-md-6">
                 <h4 class="fw-bold text-center mb-3">Port Scanning</h4>
                 <div class="d-flex flex-wrap justify-content-center">
                     <button onclick="portDork('https://viewdns.info/portscan/?host=example.com')" type="button" class="btn btn-outline-danger m-1">viewdns.info</button>
                     <button onclick="portDork('https://dnschecker.org/port-scanner.php?query=example.com&ptype=server')" type="button" class="btn btn-outline-danger m-1">dnschecker.org</button>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div id="urls-collecting" class="col-md-6">
                 <h4 class="fw-bold text-center mb-3">URLs Collecting</h4>
                 <div class="d-flex flex-wrap justify-content-center">
                     <button onclick="urlDork('https://web.archive.org/cdx/search/cdx?url=*.example.com/*&output=txt&collapse=urlkey&fl=original&page=/')" type="button" class="btn btn-outline-danger m-1">web.archive.org</button>
@@ -227,7 +256,7 @@
         </div>
 
         <!-- GitHub Dorking -->
-        <div class="mb-5">
+        <div id="github-dorking" class="mb-5">
             <h4 class="fw-bold text-center mb-3">GitHub Normal Dorking</h4>
             <div class="d-flex flex-wrap justify-content-center">
                 <button onclick="gitDork('inurl:gitlab example.com')" type="button" class="btn btn-outline-danger m-1">GitLab</button>
@@ -256,7 +285,7 @@
         </div>
 
         <!-- CMS Dorking -->
-        <div class="mb-5">
+        <div id="cms-dorking" class="mb-5">
             <h4 class="fw-bold text-center mb-3">GitHub advance dorking:</h4>
             <div class="row">
                 <div class="col-6">
@@ -294,7 +323,7 @@
         </div>
 
         <!-- CVE Search -->
-        <div class="mb-5">
+        <div id="cve-search" class="mb-5">
             <h4 class="fw-bold text-center mb-3">CVE Search</h4>
             <form class="row justify-content-center mb-3">
                 <div class="col-auto">
